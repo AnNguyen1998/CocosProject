@@ -26,7 +26,7 @@ cc.Class({
     },
 
     onClickPlay: function() {
-        cc.audioEngine.play(this.onclickPlaySound, false, 1);
+        cc.audioEngine.play(soud, false, 1);
         console.log("onClickPlay");
     },
     // update (dt) {},
