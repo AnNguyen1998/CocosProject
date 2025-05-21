@@ -1,0 +1,89 @@
+1. Wrap Mode (chế độ quấn/lặp) là một thuộc tính quan trọng thường được sử dụng cho textures và animations. Nó định nghĩa cách thức một kết cấu hoặc hoạt ảnh sẽ hiển thị hoặc lặp lại khi các tọa độ của chúng vượt ra ngoài phạm vi chuẩn.
+
+- Wrap Mode trong Texture
++ Khi làm việc với textures trong Cocos Creator, các tọa độ UV (hay còn gọi là tọa độ kết cấu) thường nằm trong khoảng từ 0 đến 1. Tọa độ (0,0) thường là góc dưới bên trái của texture, và (1,1) là góc trên bên phải. Wrap Mode quyết định điều gì xảy ra khi bạn cố gắng lấy mẫu texture ở tọa độ UV nằm ngoài phạm vi [0, 1].
+  Cocos Creator cung cấp các chế độ Wrap Mode chính cho texture:
+
++ Clamp (Clamp-to-Edge):
+  Mô tả: Chế độ này sẽ "kẹp" (clamp) các tọa độ UV về giới hạn 0 hoặc 1. Nếu tọa độ UV vượt quá 1 (ví dụ: 1.2), nó sẽ được xem xét là 1. Nếu nhỏ hơn 0 (ví dụ: -0.2), nó sẽ được xem xét là 0. Điều này có nghĩa là các pixel ở rìa của texture sẽ được kéo dài ra để lấp đầy không gian bên ngoài phạm vi [0, 1].
+  Trường hợp sử dụng: Thường dùng cho các sprite có biên trong suốt để tránh các pixel bên ngoài ảnh hưởng, hoặc khi bạn muốn một đường viền đơn sắc kéo dài từ rìa texture.
++ Repeat:
+  Mô tả: Chế độ này sẽ lặp lại texture theo kiểu lát gạch (tiling) khi tọa độ UV vượt quá phạm vi [0, 1]. Ví dụ, tọa độ 1.2 sẽ được xem là 0.2, và texture sẽ bắt đầu lặp lại từ đầu.
+ Trường hợp sử dụng: Rất hữu ích khi tạo các nền (background) lặp lại, các bề mặt không gian rộng lớn (như sàn nhà, tường), hoặc các hiệu ứng cuộn vô tận.
+ Lưu ý: Trên một số nền tảng (đặc biệt là WebGL 1.0), chế độ Repeat có thể bị vô hiệu hóa nếu chiều rộng và chiều cao của texture không phải là lũy thừa của 2 (ví dụ: 16, 32, 64, 128, 256, 512, v.v.). Trong trường hợp đó, runtime có thể tự động chuyển sang Clamp-to-Edge.
++ Mirrored-Repeat:
+  Mô tả: Tương tự như Repeat, nhưng texture sẽ được gương (mirror) và lặp lại. Tức là, thay vì lặp lại theo cùng một hướng, nó sẽ lật ngược qua mỗi lần lặp.
+  Trường hợp sử dụng: Tạo các hiệu ứng đối xứng, liền mạch cho các bề mặt lặp lại.
+- Wrap Mode trong Animation
++ Trong Animation của Cocos Creator, Wrap Mode định nghĩa cách thức hoạt ảnh sẽ phát lại sau khi nó đã đạt đến điểm cuối hoặc điểm bắt đầu của một chu kỳ.
+
++ Normal (AnimationClip.WrapMode.Normal):
+Mô tả: Hoạt ảnh phát từ đầu đến cuối và sau đó dừng lại ở khung hình cuối cùng.
+Trường hợp sử dụng: Các hoạt ảnh một lần như hiệu ứng nổ, chuyển động tấn công duy nhất, hoặc mở một cánh cửa.
++ Loop (AnimationClip.WrapMode.Loop):
+Mô tả: Hoạt ảnh phát từ đầu đến cuối và sau đó lặp lại liên tục từ đầu.
+Trường hợp sử dụng: Các hoạt ảnh lặp lại như nhân vật đứng yên (idle), đi bộ, chạy, hoặc các hiệu ứng nền liên tục.
++ PingPong (AnimationClip.WrapMode.PingPong):
+Mô tả: Hoạt ảnh phát từ đầu đến cuối, sau đó phát ngược lại từ cuối về đầu, và cứ thế lặp đi lặp lại.
+Trường hợp sử dụng: Các hiệu ứng chuyển động qua lại như nút nhấp nháy, đèn nháy, hoặc vật thể di chuyển theo chu kỳ đơn giản.
++ Reverse (AnimationClip.WrapMode.Reverse):
+Mô tả: Hoạt ảnh phát từ cuối về đầu và sau đó dừng lại ở khung hình đầu tiên.
++ LoopReverse (AnimationClip.WrapMode.LoopReverse):
+Mô tả: Hoạt ảnh phát từ cuối về đầu và sau đó lặp lại liên tục từ cuối về đầu.
++ PingPongReverse (AnimationClip.WrapMode.PingPongReverse):
+Mô tả: Hoạt ảnh phát từ cuối về đầu, sau đó phát ngược lại từ đầu về cuối, và cứ thế lặp đi lặp lại.
+Bạn có thể thiết lập Wrap Mode cho một AnimationClip trong Inspector của Cocos Creator hoặc thông qua script bằng cách truy cập thuộc tính wrapMode của AnimationClip hoặc AnimationState.
+
+2. Filter Mode
+- Filter Mode định nghĩa cách các pixel của một texture được lấy mẫu khi nó được vẽ lên màn hình, đặc biệt là khi kích thước của texture trên màn hình khác với kích thước gốc của nó (tức là khi nó được phóng to hoặc thu nhỏ). Mục tiêu là làm cho hình ảnh trông mượt mà nhất có thể, tránh các hiện tượng răng cưa hoặc mờ nhòe.
+
+- Cocos Creator cung cấp ba chế độ Filter Mode chính:
+
++ Point (Nearest Neighbor Filtering):
+
+  Mô tả: Phương pháp lọc đơn giản nhất. Nó chỉ lấy màu của "texel" (pixel trong texture) gần nhất với tâm của pixel màn hình để làm màu cho pixel đó.
+  Ưu điểm: Thuật toán đơn giản, tính toán ít. Duy trì được độ sắc nét và "pixel-perfect" cho hình ảnh pixel art.
+  Nhược điểm: Khi phóng to, hình ảnh sẽ bị "răng cưa" (blocky/pixelated) rõ rệt. Khi thu nhỏ, có thể gây ra hiện tượng răng cưa (aliasing) và lấp lánh (shimmering).
+  Trường hợp sử dụng: Rất phù hợp cho game pixel art, nơi bạn muốn giữ nguyên các pixel vuông rõ ràng mà không bị làm mờ.
++ Bilinear (Bilinear Filtering):
+
+  Mô tả: Lấy mẫu màu từ bốn texel gần nhất với tâm của pixel màn hình và kết hợp chúng bằng cách tính trung bình có trọng số (weighted average) dựa trên khoảng cách.
+  Ưu điểm: Loại bỏ hiện tượng "răng cưa" khi phóng to, tạo ra sự chuyển đổi màu mượt mà hơn giữa các texel.
+  Nhược điểm: Tính toán phức tạp hơn Point Filtering một chút. Có thể làm cho hình ảnh bị mờ nhẹ khi phóng to quá mức hoặc khi được thu nhỏ nhiều.
+  Trường hợp sử dụng: Phù hợp cho hầu hết các game thông thường, nơi bạn muốn hình ảnh trông mượt mà và tự nhiên hơn.
++ Trilinear (Trilinear Filtering):
+
+  Mô tả: Dựa trên Bilinear Filtering, nhưng Trilinear Filtering thực hiện tra cứu texture và Bilinear Filtering trên hai cấp độ mipmap gần nhất (một cấp độ chất lượng cao hơn và một cấp độ thấp hơn) và sau đó nội suy tuyến tính giữa hai kết quả đó. Mipmap là các phiên bản texture có kích thước nhỏ hơn được tạo sẵn để tối ưu hóa hiệu suất khi texture được thu nhỏ.
+  Ưu điểm: Mang lại kết quả lấy mẫu tốt nhất, đặc biệt là khi texture được thu nhỏ rất nhiều, giúp giảm hiện tượng lấp lánh và aliasing.
+  Nhược điểm: Tính toán phức tạp nhất.
+  Lưu ý: Trong một số phiên bản Cocos Creator, hiệu ứng của Trilinear Filtering có thể giống với Bilinear Filtering do cách triển khai cụ thể của engine trên nền tảng đó.
+- Bạn có thể thay đổi Filter Mode của một texture trong Inspector của Cocos Creator khi chọn tài nguyên texture.
+
+3. Premultiply Alpha
+- Premultiply Alpha là một kỹ thuật được sử dụng để xử lý kênh alpha (độ trong suốt) của hình ảnh. Trong một hình ảnh thông thường (còn gọi là "straight alpha" hoặc "unpremultiplied alpha"), các giá trị màu (RGB) và giá trị alpha (A) được lưu trữ độc lập.
+
+- Ví dụ về Straight Alpha:
+
+- Một pixel màu đỏ (255, 0, 0) với độ trong suốt 50% sẽ được lưu trữ là (R:255, G:0, B:0, A:128).
+- Khi bạn pha trộn (blend) hình ảnh có alpha với một hình ảnh khác, bạn cần thực hiện một phép tính blending phức tạp. Nếu không xử lý đúng cách, hình ảnh có thể xuất hiện các "viền đen" hoặc "quầng sáng" xung quanh các cạnh trong suốt, đặc biệt là khi chúng được thu nhỏ hoặc xoay.
+
+- Premultiply Alpha giải quyết vấn đề này bằng cách:
+
+- Trước khi hình ảnh được sử dụng, các giá trị màu (RGB) của mỗi pixel đã được nhân trước (premultiplied) với giá trị alpha của chính nó.
+
+- Ví dụ về Premultiply Alpha:
+
++ Pixel màu đỏ (255, 0, 0) với độ trong suốt 50% sẽ được chuyển đổi thành (R: 255 * 0.5 = 127.5, G: 0 * 0.5 = 0, B: 0 * 0.5 = 0, A: 128). Tức là, các kênh màu đã được làm tối đi theo độ trong suốt.
++ Tác dụng của Premultiply Alpha trong Cocos Creator (và các engine game khác):
+
++ Tránh viền đen (black edges) và quầng sáng: Đây là lợi ích chính. Khi các pixel trong suốt được pha trộn hoặc khi hình ảnh được thu nhỏ/phóng to, việc sử dụng premultiplied alpha giúp loại bỏ các artifact (hiện tượng răng cưa, viền đen) thường thấy với straight alpha. Điều này đặc biệt quan trọng với các sprite có độ trong suốt phức tạp hoặc các hiệu ứng particle.
++ Pha trộn hiệu quả hơn: Với premultiplied alpha, phép tính blending trên GPU trở nên đơn giản hơn, đôi khi hiệu quả hơn.
++ Yêu cầu của một số công cụ/plugin: Một số công cụ hoặc plugin (ví dụ: các phần mềm xuất sprite sheet) có thể yêu cầu hoặc hoạt động tốt hơn với hình ảnh đã được premultiplied alpha.
++ Khi nào nên sử dụng Premultiply Alpha?
+
++ Khi bạn thấy các viền đen hoặc quầng sáng khó chịu xung quanh các sprite có độ trong suốt.
++ Khi bạn xuất các hình ảnh có kênh alpha từ phần mềm đồ họa (như Photoshop, GIMP) và cần đảm bảo chúng được xử lý đúng cách trong game engine.
++ Khi sử dụng các hiệu ứng particle hoặc các đối tượng pha trộn phức tạp.
++ Bạn có thể tìm tùy chọn Premultiply Alpha trong Inspector của Cocos Creator khi chọn một tài nguyên hình ảnh (texture). Thông thường, nếu bạn gặp vấn đề với viền đen trên các hình ảnh trong suốt, việc bật tùy chọn này có thể giải quyết được.
+
+- Tóm lại, Filter Mode ảnh hưởng đến chất lượng hình ảnh khi phóng to/thu nhỏ, trong khi Premultiply Alpha giải quyết các vấn đề liên quan đến độ trong suốt và pha trộn, giúp hình ảnh trong game trông đẹp và mượt mà hơn.
