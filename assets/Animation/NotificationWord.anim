@@ -1,0 +1,29 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "notificationWord",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 8,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "props": {
+      "x": [
+        {
+          "frame": 0,
+          "value": 1134.967
+        },
+        {
+          "frame": 5.5,
+          "value": -1370.994
+        },
+        {
+          "frame": 8,
+          "value": -1444.995
+        }
+      ]
+    }
+  },
+  "events": []
+}

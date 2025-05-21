@@ -1,0 +1,33 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "FlashLoad",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.5,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "props": {
+      "x": [
+        {
+          "frame": 0,
+          "value": -158.653
+        },
+        {
+          "frame": 0.5,
+          "value": -158.653
+        },
+        {
+          "frame": 0.8333333333333334,
+          "value": 131.914
+        },
+        {
+          "frame": 1.5,
+          "value": 131.914
+        }
+      ]
+    }
+  },
+  "events": []
+}
