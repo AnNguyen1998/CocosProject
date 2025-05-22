@@ -1,0 +1,48 @@
+Sprite Sheet/Atlas:
+
+- Sprite Sheet (Atlas): Là một tệp hình ảnh lớn duy nhất chứa nhiều hình ảnh sprite nhỏ được sắp xếp gọn gàng trên đó. Ví dụ, một file .png duy nhất có thể chứa tất cả các frame của hoạt ảnh nhân vật, hoặc tất cả các icon trong giao diện người dùng.
+Tại sao lại cần?:
+ + Giảm Draw Calls: Đây là lợi ích lớn nhất. Mỗi khi GPU cần vẽ một hình ảnh mới, đó là một "draw call". Nếu bạn có 100 sprite riêng lẻ trên màn hình, đó có thể là 100 draw calls. Nếu tất cả 100 sprite đó nằm trên một sprite sheet duy nhất, GPU chỉ cần một hoặc vài draw calls để vẽ tất cả chúng. Giảm draw calls là cực kỳ quan trọng để cải thiện hiệu suất, đặc biệt trên thiết bị di động.
+ + Giảm chi phí tải tài nguyên: Tải một tệp hình ảnh lớn thường hiệu quả hơn việc tải nhiều tệp hình ảnh nhỏ riêng lẻ.
+ + Tối ưu hóa bộ nhớ: Các sprite trên atlas thường được sắp xếp tối ưu để sử dụng bộ nhớ GPU hiệu quả hơn.
+ + Auto Atlas là công cụ của Cocos Creator giúp bạn thực hiện quá trình đóng gói này một cách tự động, mà không cần phải dùng đến các phần mềm bên ngoài như TexturePacker hay cách làm thủ công.
+
+Cách hoạt động của Auto Atlas trong Cocos Creator
+ - Tạo Auto Atlas Asset:
+
+ + Trong bảng điều khiển Assets (Tài nguyên), nhấp chuột phải vào một thư mục bất kỳ.
+ + Chọn Create -> Atlas -> Auto Atlas.
+ + Một asset mới có tên AutoAtlas.json (hoặc tên bạn đặt) sẽ được tạo.
+Chỉ định các hình ảnh Sprite:
+
+ + Kéo và thả các tệp hình ảnh sprite (.png, .jpg, v.v.) mà bạn muốn đóng gói vào thuộc tính "Atlases" của asset AutoAtlas.json trong Inspector.
+ + Bạn cũng có thể kéo thả một thư mục chứa nhiều sprite, và Auto Atlas sẽ tự động quét và thêm tất cả các sprite bên trong thư mục đó.
+Cấu hình Auto Atlas:
+
+Trong Inspector của asset AutoAtlas.json, bạn có thể cấu hình các tùy chọn:
+ + Max Width (Chiều rộng tối đa): Chiều rộng tối đa của một atlas đơn lẻ.
+ + Max Height (Chiều cao tối đa): Chiều cao tối đa của một atlas đơn lẻ.
+ + Padding (Khoảng đệm): Khoảng cách giữa các sprite trong atlas.
+ + Allow Rotation (Cho phép xoay): Cho phép xoay các sprite.
+ + Force Squared (Buộc vuông): Buộc kích thước Atlas phải là hình vuông.
+ + Power Of Two (Lũy thừa của hai): Đặt kích thước bản đồ (atlas) thành số lũy thừa của hai.
+ + Heuristics (Chiến lược đóng gói): Chiến lược đóng gói Atlas, các chiến lược tùy chọn là [BestShortSideFit, BestLongSideFit, BestAreaFit, BottomLeftRule, ContactPointRule].
+    BestShortSideFit: Ưu tiên đặt các sprite vào vị trí mà cạnh ngắn nhất của sprite khớp tốt nhất với khoảng trống có sẵn.
+    BestLongSideFit: Ưu tiên đặt các sprite vào vị trí mà cạnh dài nhất của sprite khớp tốt nhất.
+    BestAreaFit: Ưu tiên đặt các sprite vào khoảng trống lớn nhất có sẵn để tối ưu hóa tổng diện tích.
+    BottomLeftRule: Thuật toán đơn giản cố gắng lấp đầy từ góc dưới bên trái.
+    ContactPointRule: Một thuật toán phức tạp hơn cố gắng tối đa hóa số điểm tiếp xúc giữa các sprite và các cạnh đã có trong atlas.
+ + Việc chọn thuật toán nào tốt nhất phụ thuộc vào đặc điểm của các sprite bạn đang đóng gói. Bạn có thể thử nghiệm để tìm ra thuật toán phù hợp nhất cho dự án của mình.
+ + Padding Bleed (Khoảng đệm chống tràn màu): Khoảng đệm với một vùng chống tràn màu 1 pixel cho mỗi kết cấu trong atlas, vùng chống tràn màu sẽ sao chép pixel gần nhất trong kết cấu gốc. Tính năng này còn được gọi là "Extrude".
+ + Filter Unused Resources (Lọc tài nguyên không sử dụng): Tùy chọn này sẽ không hoạt động trong quá trình xem trước, nó chỉ hoạt động trong quá trình build (xuất bản game).
+Sử dụng Sprite trong Editor:
+
+ - Sau khi cấu hình và lưu asset AutoAtlas.json, bạn vẫn sẽ kéo thả các sprite riêng lẻ từ thư mục gốc của chúng vào Scene hoặc vào Node.
+ - Cocos Creator sẽ tự động nhận diện rằng những sprite này nằm trong một Auto Atlas. Khi bạn chạy game hoặc build dự án, chúng sẽ được sử dụng từ sprite sheet đã được đóng gói thay vì các tệp riêng lẻ.
+ - Bạn không cần phải thay đổi code của mình để trỏ đến atlas, Cocos Creator xử lý điều đó tự động.
+Ưu điểm của Auto Atlas:
+ - Tự động hóa: Không cần sử dụng công cụ bên ngoài, quá trình đóng gói được tích hợp trực tiếp vào Cocos Creator.
+ - Dễ sử dụng: Chỉ cần kéo thả hình ảnh và cấu hình vài tùy chọn.
+ - Không cần thay đổi workflow: Bạn vẫn làm việc với các sprite riêng lẻ trong Editor, engine tự động tối ưu khi build.
+ - Tối ưu hóa hiệu suất: Giảm đáng kể số lượng draw calls, cải thiện FPS.
+ - Quản lý tài nguyên hiệu quả: Dễ dàng quản lý các sprite liên quan trong một thư mục và đóng gói chúng cùng nhau.
