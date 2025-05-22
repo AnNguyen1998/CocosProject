@@ -1,4 +1,4 @@
-cc.Class({
+var SoundController = cc.Class({
     extends: cc.Component,
 
     properties: {
@@ -9,24 +9,34 @@ cc.Class({
         onclickPlaySound: {
             default: null,
             type: cc.AudioClip
-        }
+        },
+       soundFlag : true,
+
     },
 
-    onLoad () {
+    onLoad() {
         this.playBGM();
+        console.log("soundFlag_0", this.soundFlag);
+        console.log("sound controller loaded");
     },
 
-    start () {
+    start() {
 
     },
 
-    playBGM: function() {
-        cc.audioEngine.play(this.playBGMSound, true, 1);
+    playBGM () {
+        this.bgmId = cc.audioEngine.play(this.playBGMSound, true, 1);
         console.log("playBGM");
     },
 
-    onClickPlay: function() {
+    onClickPlay () {
         cc.audioEngine.play(this.onclickPlaySound, false, 1);
+        if(this.soundFlag) {
+            cc.audioEngine.pause(this.bgmId);
+        }else if (!this.soundFlag) {
+            cc.audioEngine.resume(this.bgmId);
+        }
+        this.soundFlag = !this.soundFlag;
         console.log("onClickPlay");
     },
     // update (dt) {},
