@@ -27,11 +27,11 @@ cc.Class({
 
     onChangeSprite: function() {
         if (this.flag) {
-            this.node1.getComponent(cc.Sprite).spriteFrame = this.spriteComponent1;
+            this.node1.getComponent(cc.Sprite).spriteFrame = this.spriteComponent2;
             console.log("if");
             this.flag = false;
         }else if (!this.flag) {
-           this.node1.getComponent(cc.Sprite).spriteFrame = this.spriteComponent2;
+           this.node1.getComponent(cc.Sprite).spriteFrame = this.spriteComponent1;
             console.log("else if");
             this.flag = true;
         }
