@@ -1,0 +1,12 @@
+ - Bitmap Font (Phông chữ bitmap)
+Cấu tạo: Tài nguyên phông chữ bitmap bao gồm hai phần:
+Một tệp phông chữ .fnt (thường là XML hoặc plain text).
+Một tệp hình ảnh .png (là bản đồ hình ảnh chứa tất cả các ký tự).
+Bạn có thể hình dung tệp .png là một bản đồ hình ảnh chứa các ký tự, và tệp .fnt là chỉ mục để biết vị trí và kích thước của mỗi ký tự trong bản đồ đó.
+Công cụ tạo: Cặp tệp này có thể được tạo ra bằng các công cụ chuyên dụng như:
+BMFont: Một công cụ phổ biến trên Windows.
+Glyph Designer: Một lựa chọn tốt cho macOS.
+Lưu ý: Vui lòng đọc phần "Bitmap font tool" trong tài liệu Cocos Creator để biết thêm chi tiết về cách sử dụng các công cụ này.
+Cách nhập (Import): Khi nhập phông chữ bitmap, hãy đảm bảo rằng cả tệp .fnt và tệp .png được kéo và thả cùng lúc vào bảng điều khiển Assets. Chúng cũng nên được đặt trong cùng một thư mục để Cocos Creator có thể nhận diện chúng là một cặp tài nguyên phông chữ bitmap.
+Ưu điểm: Hiệu suất hiển thị cực kỳ cao vì các ký tự đã là hình ảnh được tạo sẵn, không cần xử lý thêm trong runtime. Phù hợp cho các game có phong cách nghệ thuật đặc biệt hoặc khi cần hiệu suất tối đa.
+Nhược điểm: Kích thước tệp có thể lớn nếu phông chữ có nhiều ký tự. Không linh hoạt trong việc thay đổi kích thước hoặc kiểu dáng phông chữ trong runtime (mỗi kích thước/kiểu dáng cần một tập .fnt/.png riêng).

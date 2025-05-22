@@ -11,9 +11,6 @@
   Mô tả: Chế độ này sẽ lặp lại texture theo kiểu lát gạch (tiling) khi tọa độ UV vượt quá phạm vi [0, 1]. Ví dụ, tọa độ 1.2 sẽ được xem là 0.2, và texture sẽ bắt đầu lặp lại từ đầu.
  Trường hợp sử dụng: Rất hữu ích khi tạo các nền (background) lặp lại, các bề mặt không gian rộng lớn (như sàn nhà, tường), hoặc các hiệu ứng cuộn vô tận.
  Lưu ý: Trên một số nền tảng (đặc biệt là WebGL 1.0), chế độ Repeat có thể bị vô hiệu hóa nếu chiều rộng và chiều cao của texture không phải là lũy thừa của 2 (ví dụ: 16, 32, 64, 128, 256, 512, v.v.). Trong trường hợp đó, runtime có thể tự động chuyển sang Clamp-to-Edge.
-+ Mirrored-Repeat:
-  Mô tả: Tương tự như Repeat, nhưng texture sẽ được gương (mirror) và lặp lại. Tức là, thay vì lặp lại theo cùng một hướng, nó sẽ lật ngược qua mỗi lần lặp.
-  Trường hợp sử dụng: Tạo các hiệu ứng đối xứng, liền mạch cho các bề mặt lặp lại.
 - Wrap Mode trong Animation
 + Trong Animation của Cocos Creator, Wrap Mode định nghĩa cách thức hoạt ảnh sẽ phát lại sau khi nó đã đạt đến điểm cuối hoặc điểm bắt đầu của một chu kỳ.
 
