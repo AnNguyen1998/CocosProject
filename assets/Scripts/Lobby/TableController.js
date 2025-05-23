@@ -21,8 +21,10 @@ cc.Class({
             cell.parent = this.layoutTable.node;
         }
         fakeData.forEach((data, index) => {
-            cellList[index].getChildByName('Name').getComponent(cc.Label).string = data;
-            cellList[index].getChildByName('Rank').getComponent(cc.Label).string = index + 1;
+            let labelName = cellList[index].getChildByName('Name').getComponent(cc.Label);
+            let labelRank = cellList[index].getChildByName('Rank').getComponent(cc.Label);
+            labelName.string = data;
+            labelRank.string = index + 1;
         });
     }
 });
