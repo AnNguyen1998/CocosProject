@@ -17,14 +17,6 @@ cc.Class({
         },
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
-
-    start () {
-
-    },
-
     onChangeSprite: function() {
         if (this.flag) {
             this.node1.getComponent(cc.Sprite).spriteFrame = this.spriteComponent2;
@@ -36,5 +28,5 @@ cc.Class({
             this.flag = true;
         }
     }
-    // update (dt) {},
+    
 });
