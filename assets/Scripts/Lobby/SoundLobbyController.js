@@ -2,11 +2,11 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        BackgroundMusic: {
+        backgroundMusic: {
             default: null,
             type: cc.AudioClip
         },
-        ClickMusic: {
+        clickMusic: {
             default: null,
             type: cc.AudioClip
         },
@@ -30,12 +30,12 @@ cc.Class({
     },
 
     playBackgroundMusic() {
-        this.bgmId = cc.audioEngine.play(this.BackgroundMusic, true, 1);
+        this.bgmId = cc.audioEngine.play(this.backgroundMusic, true, 1);
     },
 
     onClickSFX() {
         if (this.isSFXChecked) {
-            cc.audioEngine.play(this.ClickMusic, false, 1);
+            cc.audioEngine.play(this.clickMusic, false, 1);
         }
     },
 

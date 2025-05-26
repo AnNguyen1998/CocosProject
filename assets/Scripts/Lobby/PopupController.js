@@ -2,30 +2,71 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        PopupSetting: {
+        popupSetting: {
             default: null,
             type: require('PopupItem')
         },
-        PopupRank: {
+        popupRank: {
             default: null,
             type: require('PopupItem')
         },
     },
 
     showSetting() {
-        this.PopupSetting.show();
+        this.popupSetting.show();
     },
 
     showRank() {
-        this.PopupRank.show();
+        const fakeData = [
+            {
+                username: 'PixelProwler',
+                point: 1500
+            },
+            {
+                username: 'ByteBlade',
+                point: 1450
+            },
+            {
+                username: 'VortexViper',
+                point: 950
+            },
+            {
+                username: 'AuraAssassin',
+                point: 1120
+            },
+            {
+                username: 'CircuitSorcerer',
+                point: 1025
+            },
+            {
+                username: 'EchoEnigma',
+                point: 520
+            },
+            {
+                username: 'GlyphGhost',
+                point: 980
+            },
+            {
+                username: 'NebulaNomad',
+                point: 1250
+            },
+            {
+                username: 'QuantumQuasar',
+                point: 1110
+            },
+            {
+                username: 'ZenithZephyr',
+                point: 990
+            }];
+        this.popupRank.show(fakeData);
     },
 
     hideSetting() {
-        this.PopupSetting.hide();
+        this.popupSetting.hide();
     },
-    
+
     hideRank() {
-        this.PopupRank.hide();
+        this.popupRank.hide();
     },
 
 });
