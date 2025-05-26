@@ -2,30 +2,30 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        PopupSetting: {
+        popupSetting: {
             default: null,
             type: require('PopupItem')
         },
-        PopupRank: {
+        popupRank: {
             default: null,
             type: require('PopupItem')
         },
     },
 
     showSetting() {
-        this.PopupSetting.show();
+        this.popupSetting.show();
     },
 
     showRank() {
-        this.PopupRank.show();
+        this.popupRank.show();
     },
 
     hideSetting() {
-        this.PopupSetting.hide();
+        this.popupSetting.hide();
     },
-    
+
     hideRank() {
-        this.PopupRank.hide();
+        this.popupRank.hide();
     },
 
 });
