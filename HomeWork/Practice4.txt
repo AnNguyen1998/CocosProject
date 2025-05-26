@@ -1,0 +1,17 @@
+1. Tìm hiểu về Size mode
+- Dùng để kiểm soát cách kích thước của Sprite Node được xác định so với hình ảnh texture mà nó hiển thị.
+- Tác dụng: Việc chọn Size Mode phù hợp sẽ giúp bạn tối ưu hóa hiệu suất hiển thị, kiểm soát bố cục một cách chính xác và đảm bảo giao diện người dùng của bạn trông đẹp mắt trên mọi thiết bị.
+* Trimmed
+- Thay đổi kích thước của node bằng kích thước thực tế của hình ảnh(loại bỏ phần trong suốt).
+- Khi nào cần sử dụng: Khi muốn Node gọn gàng, chính xác với nội dung hoặc Để tối ưu hóa va chạm hoặc bố cục.
+* Raw
+- Kích thước node bằng kích thước gốc của tệp hình ảnh (bao gồm cả phần trong suốt).
+- Khi nào cần sử dụng: 
++ Khi sử dụng cho hoạt ảnh sprite để đảm bảo vị trí Node ổn định giữa các frame. 
++ Khi bạn cần Node chiếm một không gian cố định đã biết trước (kích thước của file gốc). 
++ Khi các pixel trong suốt ở rìa có ý nghĩa về mặt bố cục hoặc hiệu ứng.
+
+2. Tại sao Emitter phải là Singleton
+- Nếu có nhiều thể hiện (instance) của Emitter, bạn sẽ không biết chắc chắn thể hiện nào đang phát sự kiện và thể hiện nào đang lắng nghe. Một thành phần có thể phát sự kiện trên emitter1, nhưng một thành phần khác lại lắng nghe trên emitter2, dẫn đến việc các sự kiện không bao giờ được nhận.
+- Singleton loại bỏ vấn đề này bằng cách đảm bảo chỉ có một Emitter, mọi sự kiện được gửi và nhận qua cùng một đối tượng.
+- Dễ dàng truy cập toàn cục
