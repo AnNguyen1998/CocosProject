@@ -13,9 +13,9 @@ cc.Class({
     },
 
     onLoad() {
-        const fakeData = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+        const fakeData = ['PixelProwler', 'ByteBlade', 'VortexViper', 'AuraAssassin', 'CircuitSorcerer', 'EchoEnigma', 'GlyphGhost', 'NebulaNomad', 'QuantumQuasar', 'ZenithZephyr'];
         const cellList = [];
-        for(let i = 0; i < 5; i++) {
+        for (let i = 0; i < 10; i++) {
             let cell = cc.instantiate(this.cell);
             cellList.push(cell);
             cell.parent = this.layoutTable.node;
@@ -26,5 +26,8 @@ cc.Class({
             labelName.string = data;
             labelRank.string = index + 1;
         });
+        cellList[0].color = cc.Color.RED;
+        cellList[1].color = cc.Color.ORANGE;
+        cellList[2].color = cc.Color.YELLOW;
     }
 });

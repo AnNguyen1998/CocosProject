@@ -18,6 +18,10 @@ cc.Class({
             default: null,
             type: cc.Node
         },
+        musicSlider: {
+            default: null,
+            type: cc.Slider
+        },
     },
 
     onLoad() {
@@ -47,4 +51,10 @@ cc.Class({
     onToggleSFXClick() {
         this.isSFXChecked = this.toggleSFX.getComponent(cc.Toggle).isChecked;
     },
+
+    onMusicSliderChange() {
+        const volume = this.musicSlider.progress;
+        cc.audioEngine.setVolume(this.bgmId, volume);
+    },
+
 });
