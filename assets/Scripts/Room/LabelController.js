@@ -19,18 +19,9 @@ cc.Class({
             default: null,
             type: SoundController
         }
-        // flag: true
     },
 
-    onLoad() {
-
-    },
-
-    start() {
-        
-    },
-
-    onclickLabel() {
+    onClickLabel() {
         if (!this.soundController.soundFlag) {
             this.labelComponent.string = "Play";
             console.log("if");
@@ -38,7 +29,6 @@ cc.Class({
             this.labelComponent.string = "Stop";
             console.log("else if");
         }
-        // this.soundFlag = !this.soundFlag;
     },
 
     changeFont: function () {
@@ -51,9 +41,5 @@ cc.Class({
 
     onRotate: function () {
         this.labelComponent1.node.angle += 10;
-    },
-
-    update(dt) {
-
     },
 });

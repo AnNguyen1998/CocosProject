@@ -6,7 +6,7 @@ var SoundController = cc.Class({
             default: null,
             type: cc.AudioClip
         },
-        onclickPlaySound: {
+        onClickPlaySound: {
             default: null,
             type: cc.AudioClip
         },
@@ -18,10 +18,6 @@ var SoundController = cc.Class({
         this.playBGM();
         console.log("soundFlag_0", this.soundFlag);
         console.log("sound controller loaded");
-    },
-
-    start() {
-
     },
 
     playBGM () {
@@ -39,5 +35,5 @@ var SoundController = cc.Class({
         this.soundFlag = !this.soundFlag;
         console.log("onClickPlay");
     },
-    // update (dt) {},
+    
 });
