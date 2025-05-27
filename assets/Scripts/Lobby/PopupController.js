@@ -1,3 +1,4 @@
+const Emitter = require('MEmitter');
 cc.Class({
     extends: cc.Component,
 
@@ -10,6 +11,13 @@ cc.Class({
             default: null,
             type: require('PopupItem')
         },
+    },
+
+    onLoad() {
+        Emitter.instance.registerEvent('showSetting', this.showSetting.bind(this));
+        Emitter.instance.registerEvent('showRank', this.showRank.bind(this));
+        Emitter.instance.registerEvent('hideSetting', this.hideSetting.bind(this));
+        Emitter.instance.registerEvent('hideRank', this.hideRank.bind(this));
     },
 
     showSetting() {

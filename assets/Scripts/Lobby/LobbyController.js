@@ -1,3 +1,4 @@
+const Emitter = require('MEmitter');
 cc.Class({
     extends: cc.Component,
 
@@ -9,19 +10,19 @@ cc.Class({
     },
 
     showSetting() {
-        this.popupController.showSetting();
+        Emitter.instance.emit('showSetting');
     },
 
     showRank() {
-        this.popupController.showRank();
+        Emitter.instance.emit('showRank');
     },
 
     hideSetting() {
-        this.popupController.hideSetting();
+        Emitter.instance.emit('hideSetting');
     },
 
     hideRank() {
-        this.popupController.hideRank();
+        Emitter.instance.emit('hideRank');
     },
 
 });

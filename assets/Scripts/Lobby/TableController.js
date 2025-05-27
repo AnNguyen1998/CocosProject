@@ -28,6 +28,7 @@ cc.Class({
     },
 
     showData(data) {
+        data.sort((a, b) => b.point - a.point);
         data.forEach((data, index) => {
             let labelName = this.cellList[index].getChildByName('Name').getComponent(cc.Label);
             let labelRank = this.cellList[index].getChildByName('Rank').getComponent(cc.Label);

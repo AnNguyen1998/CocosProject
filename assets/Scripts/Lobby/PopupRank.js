@@ -5,12 +5,16 @@ cc.Class({
             default: null,
             type: require('TableController')
         },
+        scrollView: {
+            default: null,
+            type: cc.ScrollView
+        },
     },
 
     show(data) {
         this._super();
-        data.sort((a, b) => b.point - a.point);
         this.tableController.showData(data);
+        this.scrollView.scrollToTop(0);
     }
 
 });
