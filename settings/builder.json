@@ -16,7 +16,7 @@
   },
   "encryptJs": true,
   "excludeScenes": [
-    "a8c6e714-e6b8-4fdd-b3e8-fd66dd123725"
+    "b5ae8f83-38f7-420b-bc71-5b5dc5a898e4"
   ],
   "fb-instant-games": {},
   "includeSDKBox": false,
@@ -37,8 +37,8 @@
     "orientation": "portrait",
     "zip": false
   },
-  "startScene": "b5ae8f83-38f7-420b-bc71-5b5dc5a898e4",
-  "title": "hello_world",
+  "startScene": "a8c6e714-e6b8-4fdd-b3e8-fd66dd123725",
+  "title": "LobbyScene",
   "webOrientation": "landscape",
   "wechatgame": {
     "REMOTE_SERVER_ROOT": "",
