@@ -16,12 +16,23 @@ class mEmitter {
     removeEvent(event, listener) {
         this._emiter.removeListener(event, listener);
     }
+    registerEventsMap(eventsMap) {
+        for(const event in eventsMap) {
+            this.registerEvent(event, eventsMap[event]);
+        }
+    }
+    removeEventsMap(eventsMap) {
+        for(const event in eventsMap) {
+            this.removeEvent(event, eventsMap[event]);
+        }
+    }
     destroy() {
         this._emiter.removeAllListeners();
         this._emiter = null;
         mEmitter.instance = null;
     }
 }
+
 mEmitter.instance = null;
 
 if (!mEmitter.instance) {

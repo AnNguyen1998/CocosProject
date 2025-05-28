@@ -1,4 +1,5 @@
 const Emitter = require('MEmitter');
+const EventsKey = require('EventsKey');
 cc.Class({
     extends: require('PopupItem'),
 
@@ -26,17 +27,17 @@ cc.Class({
         let process = this.volumeSlider.progress;
         let loadVolume = this.volumeSlider.node.getChildByName("Load");
         loadVolume.width = this.volumeSlider.node.width * process;
-        Emitter.instance.emit('slider', process);
+        Emitter.instance.emit(EventsKey.CHANGED_SLIDER, process);
     },
 
     onMusicToggleChange() {
         let isChecked = this.toggleBGM.getComponent(cc.Toggle).isChecked;
-        Emitter.instance.emit('musicToggle', isChecked);
+        Emitter.instance.emit(EventsKey.TOGGLE_MUSIC, isChecked);
     },
 
     onSFXToggleChange() {
         let isChecked = this.toggleSFX.getComponent(cc.Toggle).isChecked;
-        Emitter.instance.emit('sfxToggle', isChecked);
+        Emitter.instance.emit(EventsKey.TOGGLE_SOUNDFX, isChecked);
     }
 
 });

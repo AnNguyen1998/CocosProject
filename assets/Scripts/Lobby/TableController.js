@@ -13,7 +13,11 @@ cc.Class({
         cellList: {
             default: [],
             type: cc.Prefab
-        }
+        },
+        scrollView: {
+            default: null,
+            type: cc.ScrollView
+        },
     },
 
     onLoad() {
@@ -38,6 +42,7 @@ cc.Class({
             labelName.string = data.username;
             labelRank.string = index + 1;
         });
+        this.scrollView.scrollToTop(0);
     }
 
 });

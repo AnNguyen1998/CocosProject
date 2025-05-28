@@ -1,4 +1,5 @@
 const Emitter = require('MEmitter');
+const EventsKey = require('EventsKey');
 cc.Class({
     extends: cc.Component,
 
@@ -16,9 +17,20 @@ cc.Class({
     onLoad() {
         this.playBackgroundMusic();
         this.isSFXChecked = true;
-        Emitter.instance.registerEvent("slider", this.onMusicSliderChange.bind(this));
-        Emitter.instance.registerEvent("musicToggle", this.onMusicToggleChange.bind(this));
-        Emitter.instance.registerEvent("sfxToggle", this.onSFXToggleChange.bind(this));
+        this.initEventsMap();
+        this.registerEventsMap();
+    },
+
+    initEventsMap() {
+        this.eventsMap = {
+            [EventsKey.CHANGED_SLIDER]: this.onMusicSliderChange.bind(this),
+            [EventsKey.TOGGLE_MUSIC]: this.onMusicToggleChange.bind(this),
+            [EventsKey.TOGGLE_SOUNDFX]: this.onSFXToggleChange.bind(this)
+        };
+    },
+
+    registerEventsMap() {
+        Emitter.instance.registerEventsMap(this.eventsMap);
     },
 
     playBackgroundMusic() {
@@ -47,5 +59,13 @@ cc.Class({
     onMusicSliderChange(process) {
         cc.audioEngine.setVolume(this.bgmId, process);
     },
+
+    removeEventsMap() {
+        Emitter.instance.removeEventsMap(this.eventsMap);
+    },
+
+    onDestroy() {
+        this.removeEventsMap();
+    }
 
 });

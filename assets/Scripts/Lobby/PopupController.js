@@ -1,4 +1,5 @@
 const Emitter = require('MEmitter');
+const EventsKey = require('EventsKey');
 cc.Class({
     extends: cc.Component,
 
@@ -14,10 +15,21 @@ cc.Class({
     },
 
     onLoad() {
-        Emitter.instance.registerEvent('showSetting', this.showSetting.bind(this));
-        Emitter.instance.registerEvent('showRank', this.showRank.bind(this));
-        Emitter.instance.registerEvent('hideSetting', this.hideSetting.bind(this));
-        Emitter.instance.registerEvent('hideRank', this.hideRank.bind(this));
+        this.initEventsMap();
+        this.registerEventsMap();
+    },
+
+    initEventsMap() {
+        this.eventsMap = {
+            [EventsKey.SHOW_SETTING_POPUP]: this.showSetting.bind(this),
+            [EventsKey.SHOW_RANK_POPUP]: this.showRank.bind(this),
+            [EventsKey.HIDE_SETTING_POPUP]: this.hideSetting.bind(this),
+            [EventsKey.HIDE_RANK_POPUP]: this.hideRank.bind(this)
+        };
+    },
+
+    registerEventsMap() {
+        Emitter.instance.registerEventsMap(this.eventsMap);
     },
 
     showSetting() {
@@ -76,5 +88,13 @@ cc.Class({
     hideRank() {
         this.popupRank.hide();
     },
+
+    removeEventsMap() {
+        Emitter.instance.removeEventsMap(this.eventsMap);
+    },
+
+    onDestroy() {
+        this.removeEventsMap();
+    }
 
 });

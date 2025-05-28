@@ -1,4 +1,5 @@
 const Emitter = require('MEmitter');
+const EventsKey = require('EventsKey');
 cc.Class({
     extends: cc.Component,
 
@@ -10,19 +11,19 @@ cc.Class({
     },
 
     showSetting() {
-        Emitter.instance.emit('showSetting');
+        Emitter.instance.emit(EventsKey.SHOW_SETTING_POPUP);
     },
 
     showRank() {
-        Emitter.instance.emit('showRank');
+        Emitter.instance.emit(EventsKey.SHOW_RANK_POPUP);
     },
 
     hideSetting() {
-        Emitter.instance.emit('hideSetting');
+        Emitter.instance.emit(EventsKey.HIDE_SETTING_POPUP);
     },
 
     hideRank() {
-        Emitter.instance.emit('hideRank');
+        Emitter.instance.emit(EventsKey.HIDE_RANK_POPUP);
     },
 
 });
