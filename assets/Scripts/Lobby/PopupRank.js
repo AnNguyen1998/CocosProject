@@ -9,7 +9,6 @@ cc.Class({
 
     show(data) {
         this._super();
-        data.sort((a, b) => b.point - a.point);
         this.tableController.showData(data);
     }
 

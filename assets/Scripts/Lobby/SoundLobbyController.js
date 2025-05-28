@@ -1,3 +1,5 @@
+const Emitter = require('MEmitter');
+const EventsKey = require('EventsKey');
 cc.Class({
     extends: cc.Component,
 
@@ -10,23 +12,25 @@ cc.Class({
             default: null,
             type: cc.AudioClip
         },
-        toggleBGM: {
-            default: null,
-            type: cc.Node
-        },
-        toggleSFX: {
-            default: null,
-            type: cc.Node
-        },
-        musicSlider: {
-            default: null,
-            type: cc.Slider
-        },
     },
 
     onLoad() {
         this.playBackgroundMusic();
         this.isSFXChecked = true;
+        this.initEventsMap();
+        this.registerEventsMap();
+    },
+
+    initEventsMap() {
+        this.eventsMap = {
+            [EventsKey.CHANGED_SLIDER]: this.onMusicSliderChange.bind(this),
+            [EventsKey.TOGGLE_MUSIC]: this.onMusicToggleChange.bind(this),
+            [EventsKey.TOGGLE_SOUNDFX]: this.onSFXToggleChange.bind(this)
+        };
+    },
+
+    registerEventsMap() {
+        Emitter.instance.registerEventsMap(this.eventsMap);
     },
 
     playBackgroundMusic() {
@@ -39,8 +43,8 @@ cc.Class({
         }
     },
 
-    onToggleBGMClick() {
-        if (this.toggleBGM.getComponent(cc.Toggle).isChecked) {
+    onMusicToggleChange(isChecked) {
+        if (isChecked) {
             cc.audioEngine.resume(this.bgmId);
         }
         else {
@@ -48,13 +52,20 @@ cc.Class({
         }
     },
 
-    onToggleSFXClick() {
-        this.isSFXChecked = this.toggleSFX.getComponent(cc.Toggle).isChecked;
+    onSFXToggleChange(isChecked) {
+        this.isSFXChecked = isChecked;
     },
 
-    onMusicSliderChange() {
-        const volume = this.musicSlider.progress;
-        cc.audioEngine.setVolume(this.bgmId, volume);
+    onMusicSliderChange(process) {
+        cc.audioEngine.setVolume(this.bgmId, process);
     },
+
+    removeEventsMap() {
+        Emitter.instance.removeEventsMap(this.eventsMap);
+    },
+
+    onDestroy() {
+        this.removeEventsMap();
+    }
 
 });
