@@ -21,7 +21,7 @@ cc.Class({
 
     preLoadScene() {
         this.spineBoy.setAnimation(0, "run", true);
-        cc.director.preloadScene("BattleScene", (completedCount, totalCount, item) => {
+        cc.director.preloadScene("LobbyScene", (completedCount, totalCount, item) => {
             let percent = completedCount / totalCount;
             this.loadProgressBar.progress = percent;
             let moveDistance = this.loadProgressBar.node.width * this.loadProgressBar.progress;
@@ -30,11 +30,7 @@ cc.Class({
                 .start();
         },
             () => {
-                this.loadProgressBar.progress = 1;
-                this.scheduleOnce(() => {
-                     cc.director.loadScene("BattleScene");
-                },1);
-               
+                     cc.director.loadScene("LobbyScene");
             });
     },
 

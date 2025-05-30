@@ -1,7 +1,12 @@
+const Emitter = require('MEmitter');
+const EventKey = require('EventsKey');
+const RangeUp = 470;
+const RangeDown = -250;
 cc.Class({
     extends: cc.Component,
 
     properties: {
+        charID: "",
         charHP: {
             default: 0,
             type: cc.Integer,
@@ -26,6 +31,12 @@ cc.Class({
 
     initChar() {
         cc.director.getCollisionManager().enabled = true;
+        this.charID = Date.now()+"";
+        this.node.getChildByName('Name').getComponent(cc.Label).string = this.charName;
+        this.currentHP = this.charHP;
+        this.node.getChildByName('HP').getComponent(cc.ProgressBar).progress = this.currentHP / this.charHP;
+        let randomY = Math.random() * RangeUp + RangeDown;
+        this.node.setPosition(cc.v2(0, randomY));
     },
 
     onMove() {
@@ -46,12 +57,41 @@ cc.Class({
     },
 
     onDie() {
-        cc.tween(this.node)
+        Emitter.instance.emit(EventKey.ON_DIE_MONSTER, this.charID);
+        this.node.stopAllActions();
+        this.node.destroy();
+    },
+
+    onCollisionTarget(target) {
+        if (target === 'Rock') {
+            this.currentHP -= 100;
+        }
+        let progressBar = this.node.getChildByName('HP').getComponent(cc.ProgressBar);
+        progressBar.progress = this.currentHP / this.charHP;
+        if (this.currentHP <= 0) {
+            cc.tween(this.node)
             .by(0.5, { rotation: 180 })
             .call(() => {
-                this.node.destroy();
+                this.onDie();
             })
             .start();
-    }
+        }
+    },
+
+    onCollisionEnter(other, self) {
+        if (other.node.group === 'Rock') {
+            this.onCollisionTarget(other.node.group);
+        }
+    },
+
+    onCollisionExit(other, self) {
+        if (other.node.group === 'OutScreen') {
+            this.onDie();
+        }
+    },
+
+    onDestroy() {
+        this.node.stopAllActions();
+    },
 
 });

@@ -27,7 +27,7 @@ cc.Class({
     },
 
     onClickButtonPlay() {
-        cc.director.loadScene("LoadingScene");
+        cc.director.loadScene("BattleScene");
     }
 
 });

@@ -1,3 +1,5 @@
+const Emitter = require('MEmitter');
+const EventKey = require('EventsKey');
 cc.Class({
     extends: cc.Component,
 
@@ -7,26 +9,45 @@ cc.Class({
             default: 0,
             type: cc.Float,
         },
+        charList: {
+            default: [],
+            type: require('CharItem'),
+            visible: false,
+        },
     },
 
     onLoad() {
         this.schedule(this.randomInitChar, this.delayTime);
+        this.initEvents();
+    },
+
+    changeCoordinate() {
+        
     },
 
     randomInitChar() {
         let randomIndex = Math.floor(Math.random() * this.charPrefabList.length);
         let charNode = cc.instantiate(this.charPrefabList[randomIndex]);
-        let infoChar = charNode.getComponent('Char'+charNode._name);
-        let progressBar = charNode.getChildByName('HP').getComponent(cc.ProgressBar);
-        let randomY = Math.random() * 470 - 250; 
-        charNode.getChildByName('Name').getComponent(cc.Label).string = infoChar.charName;
-        progressBar.progress = infoChar.currentHP / infoChar.charHP;
-        charNode.setPosition(cc.v2(0, randomY));
         charNode.parent = this.node;
+        this.charList.push(charNode.getComponent('CharItem'));
+    },
+
+    initEvents() {
+        this.eventsMap = {
+            [EventKey.ON_DIE_MONSTER]: this.removeChar.bind(this),
+        };
+        Emitter.instance.registerEventsMap(this.eventsMap);
+    },
+
+    removeChar(charIDRemove) {
+        this.charList = this.charList.filter((charItem) => {
+            return charItem.charID != charIDRemove;
+        });
     },
 
     onDestroy() {
         this.unschedule(this.randomInitChar);
+        Emitter.instance.removeEventsMap(this.eventsMap);
     }
 
 });
