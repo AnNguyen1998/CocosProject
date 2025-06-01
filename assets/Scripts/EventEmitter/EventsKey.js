@@ -6,6 +6,7 @@ const EventsKey = {
     CHANGED_SLIDER: 'changedSlider',
     TOGGLE_MUSIC: 'toggleMusic',
     TOGGLE_SOUNDFX: 'toggleSound',
+    ON_DIE_MONSTER: 'onDieMonster',
 }
 
 module.exports = EventsKey;

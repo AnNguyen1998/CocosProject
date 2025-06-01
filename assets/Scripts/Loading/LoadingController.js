@@ -1,0 +1,41 @@
+cc.Class({
+    extends: cc.Component,
+
+    properties: {
+
+        loadProgressBar: {
+            default: null,
+            type: cc.ProgressBar,
+        },
+        spineBoy: {
+            default: null,
+            type: sp.Skeleton,
+        },
+
+    },
+
+    onLoad() {
+        this.initProgressBar();
+        this.preLoadScene();
+    },
+
+    preLoadScene() {
+        this.spineBoy.setAnimation(0, "run", true);
+        cc.director.preloadScene("LobbyScene", (completedCount, totalCount, item) => {
+            let percent = completedCount / totalCount;
+            this.loadProgressBar.progress = percent;
+            let moveDistance = this.loadProgressBar.node.width * this.loadProgressBar.progress;
+            cc.tween(this.spineBoy.node)
+                .by(0.5, { x: moveDistance })
+                .start();
+        },
+            () => {
+                     cc.director.loadScene("LobbyScene");
+            });
+    },
+
+    initProgressBar() {
+        this.loadProgressBar.progress = 0;
+    },
+
+});

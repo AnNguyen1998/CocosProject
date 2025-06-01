@@ -26,4 +26,8 @@ cc.Class({
         Emitter.instance.emit(EventsKey.HIDE_RANK_POPUP);
     },
 
+    onClickButtonPlay() {
+        cc.director.loadScene("BattleScene");
+    }
+
 });
