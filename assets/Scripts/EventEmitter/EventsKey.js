@@ -7,6 +7,8 @@ const EventsKey = {
     TOGGLE_MUSIC: 'toggleMusic',
     TOGGLE_SOUNDFX: 'toggleSound',
     ON_DIE_MONSTER: 'onDieMonster',
+    ON_COLLISION_ENTER: 'onCollisionEnter',
+    ON_COLLISION_EXIT: 'onCollisionExit',
 }
 
 module.exports = EventsKey;
