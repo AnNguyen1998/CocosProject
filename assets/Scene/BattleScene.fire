@@ -629,7 +629,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "BoomLayer",
+    "_name": "RockLayer",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
@@ -690,7 +690,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Bomb",
+    "_name": "Rock",
     "_objFlags": 0,
     "_parent": {
       "__id__": 14
@@ -717,8 +717,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 95
+      "width": 95,
+      "height": 106
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -765,7 +765,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "cac3d401-5e44-4f84-ad0d-5dd8759f92cc"
+      "__uuid__": "745b5126-e5e5-451d-bdf7-03bc14e6bf6e"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -804,7 +804,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Bomb",
+    "_name": "Rock",
     "_objFlags": 0,
     "_parent": {
       "__id__": 14
@@ -831,8 +831,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 95
+      "width": 95,
+      "height": 106
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -879,7 +879,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "cac3d401-5e44-4f84-ad0d-5dd8759f92cc"
+      "__uuid__": "745b5126-e5e5-451d-bdf7-03bc14e6bf6e"
     },
     "_type": 0,
     "_sizeMode": 1,
