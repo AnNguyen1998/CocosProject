@@ -9,6 +9,9 @@ const EventsKey = {
     ON_DIE_MONSTER: 'onDieMonster',
     ON_COLLISION_ENTER: 'onCollisionEnter',
     ON_COLLISION_EXIT: 'onCollisionExit',
+    ON_BUTTON_DOWN: 'onButtonDown',
+    ON_BUTTON_UP: 'onButtonUp',
+    ON_BUTTON_CLICK: 'onButtonClick',
 }
 
 module.exports = EventsKey;
