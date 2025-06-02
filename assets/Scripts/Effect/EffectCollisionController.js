@@ -29,8 +29,9 @@ cc.Class({
     onCollisionProcess(position) {
         let effectNode = cc.instantiate(this.effectPrefab);
         let worldPosition = this.node.convertToWorldSpaceAR(cc.v2(0, 0));
-        let localPosition = this.node.convertToNodeSpaceAR(worldPosition);
-        this.node.setPosition(localPosition.x + position.x + 720 - Offset.x, localPosition.y + position.y);
+        let convertPosition = cc.v2(worldPosition.x + cc.winSize.width / 2 - Offset.x + position.x, worldPosition.y + position.y);
+        let localPosition = this.node.convertToNodeSpaceAR(convertPosition);
+        this.node.setPosition(localPosition);
         this.node.addChild(effectNode);
     },
 

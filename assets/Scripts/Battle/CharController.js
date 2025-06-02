@@ -24,8 +24,9 @@ cc.Class({
 
     changeCoordinate() {
         let worldPos = this.node.convertToWorldSpaceAR(cc.v2(0,0));
-        let localPos = this.node.convertToNodeSpaceAR(worldPos);
-        this.node.setPosition(localPos.x + 720, localPos.y);
+        let convertPos = cc.v2(worldPos.x + cc.winSize.width/2, worldPos.y);
+        let localPos = this.node.convertToNodeSpaceAR(convertPos);
+        this.node.setPosition(localPos.x, localPos.y);
     },
 
     randomInitChar() {
