@@ -2,6 +2,7 @@ const Emitter = require('MEmitter');
 const EventKey = require('EventsKey');
 const RangeUp = 470;
 const RangeDown = -250;
+const StateMachine = require('javascript-state-machine');
 cc.Class({
     extends: cc.Component,
 
@@ -25,18 +26,31 @@ cc.Class({
     },
 
     onLoad() {
-        this.onMove();
-        this.initChar();
+        this.init();
     },
 
-    initChar() {
-        cc.director.getCollisionManager().enabled = true;
-        this.charID = Date.now()+"";
-        this.node.getChildByName('Name').getComponent(cc.Label).string = this.charName;
-        this.currentHP = this.charHP;
-        this.node.getChildByName('HP').getComponent(cc.ProgressBar).progress = this.currentHP / this.charHP;
-        let randomY = Math.random() * RangeUp + RangeDown;
-        this.node.setPosition(cc.v2(0, randomY));
+    init() {
+        this.fsm = new StateMachine({
+            init: 'idle',
+            transitions: [
+                { name: 'die', from: 'idle', to: 'dead' }
+            ],
+            methods: {
+                onEnterIdle: () => {
+                    cc.director.getCollisionManager().enabled = true;
+                    this.charID = Date.now() + "";
+                    this.node.getChildByName('Name').getComponent(cc.Label).string = this.charName;
+                    this.currentHP = this.charHP;
+                    this.node.getChildByName('HP').getComponent(cc.ProgressBar).progress = this.currentHP / this.charHP;
+                    let randomY = Math.random() * RangeUp + RangeDown;
+                    this.node.setPosition(cc.v2(0, randomY));
+                    this.onMove();
+                },
+                onEnterDead: () => {
+                    this.onDie();
+                },
+            }
+        });
     },
 
     onMove() {
@@ -70,11 +84,11 @@ cc.Class({
         progressBar.progress = this.currentHP / this.charHP;
         if (this.currentHP <= 0) {
             cc.tween(this.node)
-            .by(0.5, { rotation: 180 })
-            .call(() => {
-                this.onDie();
-            })
-            .start();
+                .by(0.5, { rotation: 180 })
+                .call(() => {
+                    this.fsm.die();
+                })
+                .start();
         }
     },
 
@@ -87,7 +101,7 @@ cc.Class({
 
     onCollisionExit(other, self) {
         if (other.node.group === 'OutScreen') {
-            this.onDie();
+            this.fsm.die();
         }
     },
 
