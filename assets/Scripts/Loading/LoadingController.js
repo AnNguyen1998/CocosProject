@@ -24,10 +24,9 @@ cc.Class({
         cc.director.preloadScene("LobbyScene", (completedCount, totalCount, item) => {
             let percent = completedCount / totalCount;
             this.loadProgressBar.progress = percent;
+            const startX = this.loadProgressBar.node.x - this.loadProgressBar.node.width / 2;
             let moveDistance = this.loadProgressBar.node.width * this.loadProgressBar.progress;
-            cc.tween(this.spineBoy.node)
-                .by(0.5, { x: moveDistance })
-                .start();
+            this.spineBoy.node.x = moveDistance + startX;
         },
             () => {
                      cc.director.loadScene("LobbyScene");

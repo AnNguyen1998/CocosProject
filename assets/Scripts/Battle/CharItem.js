@@ -81,6 +81,7 @@ cc.Class({
     onCollisionEnter(other, self) {
         if (other.node.group === 'Rock') {
             this.onCollisionTarget(other.node.group);
+            Emitter.instance.emit(EventKey.ON_COLLISION_ENTER, this.node.position);
         }
     },
 

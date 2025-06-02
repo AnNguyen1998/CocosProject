@@ -19,10 +19,14 @@ cc.Class({
     onLoad() {
         this.schedule(this.randomInitChar, this.delayTime);
         this.initEvents();
+        this.changeCoordinate();
     },
 
     changeCoordinate() {
-        
+        let worldPos = this.node.convertToWorldSpaceAR(cc.v2(0,0));
+        let convertPos = cc.v2(worldPos.x + cc.winSize.width/2, worldPos.y);
+        let localPos = this.node.convertToNodeSpaceAR(convertPos);
+        this.node.setPosition(localPos.x, localPos.y);
     },
 
     randomInitChar() {
