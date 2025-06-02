@@ -792,12 +792,12 @@
     "tag": 0,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": 0.5,
+      "y": 2.8
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 116,
+      "width": 94.3,
       "height": 95
     },
     "_id": "41GRMVLgtLtZb4yte8K39N"
@@ -906,13 +906,13 @@
     "tag": 0,
     "_offset": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": -0.5,
+      "y": 1.9
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 95
+      "width": 96.2,
+      "height": 98.8
     },
     "_id": "3byzNG/oZEXqBfikUqNSq1"
   },
