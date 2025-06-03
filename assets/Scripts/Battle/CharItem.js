@@ -86,7 +86,9 @@ cc.Class({
             cc.tween(this.node)
                 .by(0.5, { rotation: 180 })
                 .call(() => {
-                    this.fsm.die();
+                    if(this.fsm.is('idle')) {
+                        this.fsm.die();
+                    }
                 })
                 .start();
         }
@@ -101,7 +103,9 @@ cc.Class({
 
     onCollisionExit(other, self) {
         if (other.node.group === 'OutScreen') {
-            this.fsm.die();
+            if( this.fsm.is('idle')){
+                this.fsm.die();
+            }
         }
     },
 

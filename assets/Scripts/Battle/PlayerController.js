@@ -67,7 +67,9 @@ cc.Class({
     },
 
     onHitMonster() {
+    if (this.fsm.is('hoverboard')) {
         this.fsm.onHit();
+    };
     },
 
     onDie() {

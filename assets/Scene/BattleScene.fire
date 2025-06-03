@@ -171,7 +171,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 584.5671475544962
+      "z": 585.4331729582806
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -960,7 +960,7 @@
     "_id": "4bZaQyr/1FvItaukUR/WQv"
   },
   {
-    "__type__": "16a996eTY5CO70OOchH8AT6",
+    "__type__": "e362fJJrNdNN5mCvCM7hK7j",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -970,7 +970,7 @@
     "effectPrefab": {
       "__uuid__": "44f26352-e173-40e8-99c1-0502ef52e7f3"
     },
-    "_id": "62GUrVLKNP6bHQL7K0A/By"
+    "_id": "7a408qKmRCYYlCsf0lJJq/"
   },
   {
     "__type__": "cc.Node",
