@@ -1,3 +1,4 @@
+const StateMachine = require('javascript-state-machine');
 cc.Class({
     extends: cc.Component,
 
@@ -14,15 +15,33 @@ cc.Class({
     },
 
     init() {
-        this.spineBoy.setAnimation(0, 'portal', true);
-        this.spineBoy.setCompleteListener((trackEntry) => {
-            if (trackEntry.animation.name === 'portal') {
-                this.spineBoy.setAnimation(0, 'hoverboard', true);
-                this.spineBoy.setCompleteListener((trackEntry) => {
-                    this.isAnimComplete = true;
-                })
+        this.fsm = new StateMachine({
+            init: 'hoverboard',
+            transitions: [
+                { name: 'onHit', from: 'hoverboard', to: 'death' }
+            ],
+            methods: {
+                onEnterHoverboard: () => {
+                    this.spineBoy.setAnimation(0, 'portal', true);
+                    this.spineBoy.setCompleteListener((trackEntry) => {
+                        if (trackEntry.animation.name === 'portal') {
+                            this.spineBoy.setAnimation(0, 'hoverboard', true);
+                            this.spineBoy.setCompleteListener((trackEntry) => {
+                                this.isAnimComplete = true;
+                            })
+                        }
+                    })
+                },
+                onEnterDeath: () => {
+                    this.spineBoy.setAnimation(0, 'death', true);
+                    this.spineBoy.setCompleteListener((trackEntry) => {
+                        if (trackEntry.animation.name === 'death') {
+                            this.onDie();
+                        }
+                    });
+                },
             }
-        })
+        });
     },
 
     onClickButtonUp() {
@@ -42,19 +61,15 @@ cc.Class({
     },
 
     onCollisionEnter(other, self) {
-        console.log('PlayerController onCollisionEnter');
         if (other.node.group === 'Monster') {
             this.onHitMonster();
         }
     },
 
     onHitMonster() {
-        this.spineBoy.setAnimation(0, 'death', true);
-        this.spineBoy.setCompleteListener((trackEntry) => {
-            if (trackEntry.animation.name === 'death') {
-                this.onDie();
-            }
-        });
+    if (this.fsm.is('hoverboard')) {
+        this.fsm.onHit();
+    };
     },
 
     onDie() {

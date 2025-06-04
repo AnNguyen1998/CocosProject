@@ -87,7 +87,7 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 37
+        "__id__": 38
       }
     ],
     "_prefab": null,
@@ -515,7 +515,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -450,
+      "x": -340,
       "y": 0,
       "z": 0
     },
@@ -960,7 +960,7 @@
     "_id": "4bZaQyr/1FvItaukUR/WQv"
   },
   {
-    "__type__": "16a996eTY5CO70OOchH8AT6",
+    "__type__": "e362fJJrNdNN5mCvCM7hK7j",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -970,7 +970,7 @@
     "effectPrefab": {
       "__uuid__": "44f26352-e173-40e8-99c1-0502ef52e7f3"
     },
-    "_id": "62GUrVLKNP6bHQL7K0A/By"
+    "_id": "7a408qKmRCYYlCsf0lJJq/"
   },
   {
     "__type__": "cc.Node",
@@ -989,7 +989,11 @@
     ],
     "_active": true,
     "_level": 2,
-    "_components": [],
+    "_components": [
+      {
+        "__id__": 37
+      }
+    ],
     "_prefab": null,
     "_opacity": 255,
     "_color": {
@@ -1011,8 +1015,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -611.118,
-      "y": -133.535,
+      "x": -595,
+      "y": -110,
       "z": 0
     },
     "_scale": {
@@ -1572,6 +1576,35 @@
     "customEventData": ""
   },
   {
+    "__type__": "cc.Widget",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 24
+    },
+    "_enabled": true,
+    "alignMode": 1,
+    "_target": {
+      "__id__": 2
+    },
+    "_alignFlags": 12,
+    "_left": 185,
+    "_right": 0,
+    "_top": 0,
+    "_bottom": 250,
+    "_verticalCenter": 0,
+    "_horizontalCenter": 0,
+    "_isAbsLeft": true,
+    "_isAbsRight": true,
+    "_isAbsTop": true,
+    "_isAbsBottom": true,
+    "_isAbsHorizontalCenter": true,
+    "_isAbsVerticalCenter": true,
+    "_originalWidth": 0,
+    "_originalHeight": 0,
+    "_id": "467z1aefFMpaJM3bzh/1MN"
+  },
+  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -1585,7 +1618,7 @@
       "height": 720
     },
     "_fitWidth": false,
-    "_fitHeight": false,
+    "_fitHeight": true,
     "_id": "91LkFTQGBIzp9PHudCzbj6"
   }
 ]
